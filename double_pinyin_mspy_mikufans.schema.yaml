@@ -37,6 +37,7 @@ engine:
     - uniquifier
   processors:
     - ascii_composer
+    - recognizer
     - key_binder
     - speller
     - punctuator
@@ -45,6 +46,7 @@ engine:
     - express_editor
   segmentors:
     - ascii_segmentor
+    - matcher
     - abc_segmentor
     - punct_segmentor
     - fallback_segmentor
@@ -54,34 +56,7 @@ engine:
     - script_translator    
     # - "script_translator@luna_pinyin"
     - "script_translator@japanese"
-japanese:
-  comment_format:
-    - "xlit|q|ー|"
-  dictionary: japanese
-  enable_user_dict: true
-  preedit_format:
-    - "xlit|q|ー|"
-  spelling_hints: 1
-japanese_revers_lookup:
-  comment_format:
-    - "xlit|q|ー|"
-  dictionary: japanese
-  preedit_format:
-    - "xlit|q|ー|"
-  spelling_hints: 1
-key_binder:
-  import_preset: default
-translator:
-  dictionary: double_pinyin_mspy_mikufans
-  # spelling_hints: 10
-  enable_user_dict: true
-luna_pinyin_reverse_lookup:
-  dictionary: luna_pinyin
-punctuator:
-  full_shape: &customeTable
-    _: ["——", "ー"]
-  half_shape: *customeTable
-  import_preset: default
+
 speller:
   algebra:
     # 全拼转为/扩展为双拼
@@ -113,10 +88,51 @@ speller:
     - derive/ie$/X/
     - derive/ui$/V/
     - derive/T$/V/
-    - xform/(.)ou$/$1B/
+    - derive/(.)ou$/$1B/
     - derive/in$/N/
     - xform/ing$/;/
     - xlit/QWRTYUIOPSDFGHMJCKLZXVBN/qwrtyuiopsdfghmjcklzxvbn/
   alphabet: zyxwvutsrqponmlkjihgfedcba;
   initials: zyxwvutsrqponmlkjihgfedcba
   delimiter: " '"
+
+translator:
+  dictionary: double_pinyin_mspy_mikufans
+  # spelling_hints: 10
+  enable_user_dict: true
+
+japanese:
+  comment_format:
+    - "xlit|q|ー|"
+  dictionary: japanese
+  enable_user_dict: true
+  preedit_format:
+    - "xlit|q|ー|"
+  spelling_hints: 1
+
+luna_pinyin_reverse_lookup:
+  dictionary: luna_pinyin
+
+japanese_revers_lookup:
+  comment_format:
+    - "xlit|q|ー|"
+  dictionary: japanese
+  preedit_format:
+    - "xlit|q|ー|"
+  spelling_hints: 1
+
+punctuator:
+  full_shape: &customeTable
+    _: ["——", "ー"]
+  half_shape: *customeTable
+  import_preset: symbols
+
+key_binder:
+  import_preset: default
+
+
+recognizer:
+  import_preset: default
+  patterns:
+    punct: '^/([0-9]0?|[A-Za-z]+)$'
+    reverse_lookup: "`[a-z]*'?$"
