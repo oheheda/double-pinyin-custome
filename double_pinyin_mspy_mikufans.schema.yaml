@@ -31,7 +31,7 @@ engine:
   filters:
     - simplifier
     - cjk_minifier
-    - "reverse_lookup_filter@luna_pinyin_reverse_lookup"
+    # - "reverse_lookup_filter@luna_pinyin_reverse_lookup"
     - "reverse_lookup_filter@japanese_revers_lookup"
     - "simplifier@emoji_suggestion"
     - uniquifier
