@@ -3,8 +3,8 @@ schema:
   dependencies:
     - luna_pinyin
     - japanese
-  name: "葱厨自用自然码+日语输入方案"
-  schema_id: double_pinyin_mikufans
+  name: "葱厨自用微软双拼+日语输入方案"
+  schema_id: double_pinyin_mspy_mikufans
   version: 3.9
 switches:
   - name: ascii_mode
@@ -86,35 +86,38 @@ punctuator:
 speller:
   algebra:
     # 全拼转为/扩展为双拼
-    - "derive/^([jqxy])u$/$1v/"
-    - "derive/^([aoe])([ioun])$/$1$1$2/"
-    - "derive/^([aoe])(ng)?$/$1$1$2/"
-    - "derive/iu$/Q/"
-    - "derive/[iu]a$/W/"
-    - "derive/[uv]an$/R/"
-    - "derive/[uv]e$/T/"
-    - "derive/ing$|uai$/Y/"
-    - "derive/^sh/U/"
-    - "derive/^ch/I/"
-    - "derive/^zh/V/"
-    - "derive/uo$/O/"
-    - "derive/[uv]n$/P/"
-    - "derive/i?ong$/S/"
-    - "derive/[iu]ang$/D/"
-    - "derive/(.)en$/$1F/"
-    - "derive/(.)eng$/$1G/"
-    - "derive/(.)ang$/$1H/"
-    - "derive/ian$/M/"
-    - "derive/(.)an$/$1J/"
-    - "derive/iao$/C/"
-    - "derive/(.)ao$/$1K/"
-    - "derive/(.)ai$/$1L/"
-    - "derive/(.)ei$/$1Z/"
-    - "derive/ie$/X/"
-    - "derive/ui$/V/"
-    - "derive/(.)ou$/$1B/"
-    - "derive/in$/N/"
-
-    - "xlit/QWRTYUIOPSDFGHMJCKLZXVBN/qwrtyuiopsdfghmjcklzxvbn/"
-  alphabet: zyxwvutsrqponmlkjihgfedcba
+    - erase/^xx$/
+    - derive/^([jqxy])u$/$1v/
+    - derive/^([aoe].*)$/o$1/
+    - derive/^([ae])(.*)$/$1$1$2/
+    - derive/iu$/Q/
+    - derive/[iu]a$/W/
+    - derive/er$|[uv]an$/R/
+    - derive/[uv]e$/T/
+    - derive/v$|uai$/Y/
+    - derive/^sh/U/
+    - derive/^ch/I/
+    - derive/^zh/V/
+    - derive/uo$/O/
+    - derive/[uv]n$/P/
+    - derive/i?ong$/S/
+    - derive/[iu]ang$/D/
+    - derive/(.)en$/$1F/
+    - derive/(.)eng$/$1G/
+    - derive/(.)ang$/$1H/
+    - derive/ian$/M/
+    - derive/(.)an$/$1J/
+    - derive/iao$/C/
+    - derive/(.)ao$/$1K/
+    - derive/(.)ai$/$1L/
+    - derive/(.)ei$/$1Z/
+    - derive/ie$/X/
+    - derive/ui$/V/
+    - derive/T$/V/
+    - xform/(.)ou$/$1B/
+    - derive/in$/N/
+    - xform/ing$/;/
+    - xlit/QWRTYUIOPSDFGHMJCKLZXVBN/qwrtyuiopsdfghmjcklzxvbn/
+  alphabet: zyxwvutsrqponmlkjihgfedcba;
+  initials: zyxwvutsrqponmlkjihgfedcba
   delimiter: " '"
