@@ -72,10 +72,9 @@ japanese_revers_lookup:
 key_binder:
   import_preset: default
 translator:
-  dictionary: double_pinyin_mikufans
+  dictionary: double_pinyin_mspy_mikufans
   # spelling_hints: 10
   enable_user_dict: true
-  prism: double_pinyin_mikufans
 luna_pinyin_reverse_lookup:
   dictionary: luna_pinyin
 punctuator:

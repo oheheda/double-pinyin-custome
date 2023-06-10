@@ -1,5 +1,5 @@
 ---
-name: double_pinyin_mikufans
+name: double_pinyin_mspy_mikufans
 version: '3.9'
 
 sort: by_weight
@@ -42,8 +42,6 @@ import_tables:
   # - 'dict/luna_pinyin.website'
   # - 'dict/luna_pinyin.xiandaihanyu'
 ...
-
-
 
 
 
