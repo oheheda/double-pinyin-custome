@@ -1,0 +1,120 @@
+schema:
+  author: mikufans
+  dependencies:
+    - luna_pinyin
+    - japanese
+  name: "葱厨自用自然码+日语输入方案"
+  schema_id: double_pinyin_mikufans
+  version: 3.9
+switches:
+  - name: ascii_mode
+    reset: 1
+    states: ["汉字/日文", "西文"]
+  - name: full_shape
+    reset: 0
+    states: ["半角", "全角"]
+  - name: simplification
+    states: ["漢字", "汉字"]
+  - name: ascii_punct
+    states: ["。，", "．，"]
+  - name: emoji_suggestion
+    reset: 1
+    states: ["🈚", "🈶"]
+  - name: extended_charset
+    reset: 1
+    states: ["基本cjk字符集","全cjk字符集"]
+emoji_suggestion:
+  opencc_config: emoji.json
+  option_name: emoji_suggestion
+  tips: all
+engine:
+  filters:
+    - simplifier
+    - cjk_minifier
+    - "reverse_lookup_filter@luna_pinyin_reverse_lookup"
+    - "reverse_lookup_filter@japanese_revers_lookup"
+    - "simplifier@emoji_suggestion"
+    - uniquifier
+  processors:
+    - ascii_composer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - "lua_translator@datetime_translator"
+    - script_translator    
+    # - "script_translator@luna_pinyin"
+    - "script_translator@japanese"
+japanese:
+  comment_format:
+    - "xlit|q|ー|"
+  dictionary: japanese
+  enable_user_dict: true
+  preedit_format:
+    - "xlit|q|ー|"
+  spelling_hints: 1
+japanese_revers_lookup:
+  comment_format:
+    - "xlit|q|ー|"
+  dictionary: japanese
+  preedit_format:
+    - "xlit|q|ー|"
+  spelling_hints: 1
+key_binder:
+  import_preset: default
+translator:
+  dictionary: double_pinyin_mikufans
+  # spelling_hints: 10
+  enable_user_dict: true
+  prism: double_pinyin_mikufans
+luna_pinyin_reverse_lookup:
+  dictionary: luna_pinyin
+punctuator:
+  full_shape: &customeTable
+    _: ["——", "ー"]
+  half_shape: *customeTable
+  import_preset: default
+speller:
+  algebra:
+    # 全拼转为/扩展为双拼
+    - "derive/^([jqxy])u$/$1v/"
+    - "derive/^([aoe])([ioun])$/$1$1$2/"
+    - "derive/^([aoe])(ng)?$/$1$1$2/"
+    - "derive/iu$/Q/"
+    - "derive/[iu]a$/W/"
+    - "derive/[uv]an$/R/"
+    - "derive/[uv]e$/T/"
+    - "derive/ing$|uai$/Y/"
+    - "derive/^sh/U/"
+    - "derive/^ch/I/"
+    - "derive/^zh/V/"
+    - "derive/uo$/O/"
+    - "derive/[uv]n$/P/"
+    - "derive/i?ong$/S/"
+    - "derive/[iu]ang$/D/"
+    - "derive/(.)en$/$1F/"
+    - "derive/(.)eng$/$1G/"
+    - "derive/(.)ang$/$1H/"
+    - "derive/ian$/M/"
+    - "derive/(.)an$/$1J/"
+    - "derive/iao$/C/"
+    - "derive/(.)ao$/$1K/"
+    - "derive/(.)ai$/$1L/"
+    - "derive/(.)ei$/$1Z/"
+    - "derive/ie$/X/"
+    - "derive/ui$/V/"
+    - "derive/(.)ou$/$1B/"
+    - "derive/in$/N/"
+
+    - "xlit/QWRTYUIOPSDFGHMJCKLZXVBN/qwrtyuiopsdfghmjcklzxvbn/"
+  alphabet: zyxwvutsrqponmlkjihgfedcba
+  delimiter: " '"
