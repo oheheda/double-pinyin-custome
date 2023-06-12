@@ -90,7 +90,7 @@ speller:
     - derive/T$/V/
     - derive/(.)ou$/$1B/
     - derive/in$/N/
-    - xform/ing$/;/
+    - derive/ing$/;/
     - xlit/QWRTYUIOPSDFGHMJCKLZXVBN/qwrtyuiopsdfghmjcklzxvbn/
   alphabet: zyxwvutsrqponmlkjihgfedcba;
   initials: zyxwvutsrqponmlkjihgfedcba
