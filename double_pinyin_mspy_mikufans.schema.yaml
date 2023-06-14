@@ -123,6 +123,7 @@ japanese_revers_lookup:
 
 easy_en:
   dictionary: easy_en
+  enable_sentence: false
   # prism: easy_en
   spelling_hints: 1
 
