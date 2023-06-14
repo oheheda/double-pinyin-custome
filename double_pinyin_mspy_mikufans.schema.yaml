@@ -53,9 +53,10 @@ engine:
   translators:
     - punct_translator
     - "lua_translator@datetime_translator"
-    - script_translator    
+    - script_translator
     # - "script_translator@luna_pinyin"
     - "script_translator@japanese"
+    - script_translator@easy_en
 
 speller:
   algebra:
@@ -119,6 +120,11 @@ japanese_revers_lookup:
   dictionary: japanese
   preedit_format:
     - "xlit|q|ー|"
+  spelling_hints: 1
+
+easy_en:
+  dictionary: easy_en
+  # prism: easy_en
   spelling_hints: 1
 
 punctuator:
