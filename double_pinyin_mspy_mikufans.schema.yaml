@@ -55,9 +55,8 @@ engine:
     - "lua_translator@datetime_translator"
     - script_translator
     # - "script_translator@luna_pinyin"
-    - "script_translator@japanese"
-    - script_translator@easy_en
-
+    - "table_translator@japanese"
+    - table_translator@easy_en
 speller:
   algebra:
     # 全拼转为/扩展为双拼
