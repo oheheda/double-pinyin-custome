@@ -20,9 +20,9 @@ switches:
   - name: emoji_suggestion
     reset: 1
     states: ["🈚", "🈶"]
-  - name: extended_charset
-    reset: 1
-    states: ["基本cjk字符集","全cjk字符集"]
+  # - name: extended_charset
+  #   reset: 1
+  #   states: ["基本cjk字符集","全cjk字符集"]
 emoji_suggestion:
   opencc_config: emoji.json
   option_name: emoji_suggestion
@@ -30,7 +30,7 @@ emoji_suggestion:
 engine:
   filters:
     - simplifier
-    - cjk_minifier
+    # - cjk_minifier
     # - "reverse_lookup_filter@luna_pinyin_reverse_lookup"
     - "reverse_lookup_filter@japanese_revers_lookup"
     - "simplifier@emoji_suggestion"
