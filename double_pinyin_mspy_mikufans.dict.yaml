@@ -3,10 +3,10 @@ name: double_pinyin_mspy_mikufans
 version: '3.9'
 
 sort: by_weight
-use_preset_vocabulary: true
+# use_preset_vocabulary: true
 
 import_tables:
-  - 'luna_pinyin'
+  - 'pinyin_simp'
   - 'sogou.web'
   - 'sogou.std'
 ...

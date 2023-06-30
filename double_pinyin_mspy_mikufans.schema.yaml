@@ -1,8 +1,9 @@
 schema:
   author: mikufans
   dependencies:
-    - luna_pinyin
+    - pinyin_simp
     - japanese
+    - easy_en
   name: "葱厨自用微软双拼+日语输入方案"
   schema_id: double_pinyin_mspy_mikufans
   version: 3.9
@@ -13,8 +14,8 @@ switches:
   - name: full_shape
     reset: 0
     states: ["半角", "全角"]
-  - name: simplification
-    states: ["漢字", "汉字"]
+  # - name: simplification
+  #   states: ["漢字", "汉字"]
   - name: ascii_punct
     states: ["。，", "．，"]
   - name: emoji_suggestion
@@ -23,16 +24,15 @@ switches:
   # - name: extended_charset
   #   reset: 1
   #   states: ["基本cjk字符集","全cjk字符集"]
-emoji_suggestion:
+emoji_suggestion: 
   opencc_config: emoji.json
   option_name: emoji_suggestion
   tips: all
 engine:
   filters:
+  #   # - simplifier
     - "simplifier@emoji_suggestion"
-    - simplifier
-    # - cjk_minifier
-    # - "reverse_lookup_filter@luna_pinyin_reverse_lookup"
+  #   # - cjk_minifier
     - "reverse_lookup_filter@japanese_revers_lookup"
     - uniquifier
   processors:
@@ -54,8 +54,7 @@ engine:
     - punct_translator
     - "lua_translator@datetime_translator"
     - script_translator
-    # - "script_translator@luna_pinyin"
-    - "table_translator@japanese"
+    - "script_translator@japanese"
     - table_translator@easy_en
 speller:
   algebra:
@@ -95,23 +94,24 @@ speller:
   alphabet: zyxwvutsrqponmlkjihgfedcba;
   initials: zyxwvutsrqponmlkjihgfedcba
   delimiter: " '"
-
+# simplifier: 
+#   excluded_types: [ japanese_custom ]
 translator:
   dictionary: double_pinyin_mspy_mikufans
+  # dictionary: pinyin_simp
+  prism: double_pinyin_mspy_mikufans
   # spelling_hints: 10
   enable_user_dict: true
-
 japanese:
   comment_format:
     - "xlit|q|ー|"
   dictionary: japanese
   enable_user_dict: true
+  enable_sentence: true 
+  enable_completion: true
   preedit_format:
     - "xlit|q|ー|"
   spelling_hints: 1
-
-luna_pinyin_reverse_lookup:
-  dictionary: luna_pinyin
 
 japanese_revers_lookup:
   comment_format:
